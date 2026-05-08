@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE SOURCE | FRANCE &mdash; Texas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  @font-face {
+    font-family: 'The Source';
+    src: local('The Source 4 Regular'), local('TheSource4-Regular'),
+         local('The Source'), local('TheSource');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', 'Garamond', serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    background: #fff;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== PARALLAX HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2019/08/christophe8.jpg.webp');
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+    animation: gentleZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes gentleZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.38);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 0 40px;
+  }
+
+  .hero-content h1 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 72px;
+    font-weight: normal;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.2s ease forwards 0.3s;
+  }
+
+  .hero-content h2 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 48px;
+    font-weight: normal;
+    letter-spacing: 18px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.2s ease forwards 0.6s;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(255,255,255,0.6);
+    margin: 0 auto 30px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.9s;
+  }
+
+  .hero-content h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    opacity: 0;
+    color: rgba(255,255,255,0.85);
+    animation: fadeUp 1.2s ease forwards 1.1s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 20px;
+    height: 32px;
+    border: 1.5px solid rgba(255,255,255,0.7);
+    border-radius: 12px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 1.5s;
+  }
+  .scroll-hint::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 2px;
+    animation: scrollBounce 1.8s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(10px); opacity: 0.3; }
+  }
+
+  /* ===== MAIN CONTAINER ===== */
+  .main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px 60px;
+  }
+
+  .main-title {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 35pt;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .intro-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 13pt;
+    font-style: italic;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 70px;
+    max-width: 720px;
+  }
+
+  /* ===== PRODUCER SECTIONS ===== */
+  .producer-section {
+    margin-bottom: 65px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .producer-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .producer-title {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 22pt;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    margin-bottom: 18px;
+  }
+
+  /* --- Carousel --- */
+  .carousel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    margin-bottom: 28px;
+    background: #f0f0f0;
+  }
+
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.75);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 2;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.3s, background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .carousel:hover .carousel-btn { opacity: 1; }
+  .carousel-btn:hover { background: rgba(255,255,255,0.95); }
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .carousel-dot.active {
+    background: rgba(255,255,255,0.95);
+  }
+
+  /* --- Producer text --- */
+  .producer-bio {
+    font-family: 'EB Garamond', 'Garamond', serif;
+    font-size: 12pt;
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 24px;
+    color: #444;
+  }
+
+  .producer-link {
+    font-family: 'EB Garamond', 'Garamond', serif;
+    font-size: 12pt;
+    font-style: italic;
+    display: inline-block;
+    margin-bottom: 28px;
+    color: #5a3e2b;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(90, 62, 43, 0.3);
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .producer-link:hover {
+    color: #3a2518;
+    border-bottom-color: #3a2518;
+  }
+
+  /* --- Wine entries --- */
+  .wine-entry {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .wine-entry:last-child { border-bottom: none; }
+
+  .wine-title {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 15pt;
+    font-weight: normal;
+    line-height: 1.45;
+    margin-bottom: 4px;
+  }
+
+  .wine-desc {
+    font-family: 'EB Garamond', 'Garamond', serif;
+    font-size: 12pt;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    color: #555;
+  }
+
+  .wine-pricing-line {
+    font-family: 'EB Garamond', serif;
+    font-size: 11pt;
+    color: #5a3e2b;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== MAP THUMBNAILS & LIGHTBOX ===== */
+  .map-thumb {
+    display: inline-block;
+    cursor: pointer;
+    max-width: 260px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .map-thumb:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .map-thumb img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid #e0e0e0;
+  }
+  .map-label {
+    display: block;
+    font-family: 'EB Garamond', serif;
+    font-size: 10pt;
+    font-style: italic;
+    color: #888;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 40px;
+    backdrop-filter: blur(4px);
+  }
+  .lightbox-overlay.active {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 12px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 32px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+  .lightbox-close:hover { color: #fff; }
+  .lightbox-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'EB Garamond', serif;
+    font-size: 11pt;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  /* ===== SUMMARY TABLE ===== */
+  .summary-section {
+    margin-top: 40px;
+    padding-top: 50px;
+    border-top: 1px solid #ddd;
+  }
+
+  .summary-title {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 22pt;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .summary-table thead th {
+    font-size: 9pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    text-align: left;
+    padding: 0 0 12px;
+    border-bottom: 1px solid #ddd;
+    font-weight: normal;
+  }
+
+  .summary-table thead th:nth-child(3) { text-align: right; }
+
+  .summary-table tbody td {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+    font-size: 11pt;
+  }
+
+  .summary-table tbody td:first-child {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 11.5pt;
+    padding-right: 20px;
+  }
+
+  .summary-table tbody td:nth-child(2) {
+    color: #888;
+    font-style: italic;
+  }
+
+  .summary-table tbody td:nth-child(3) {
+    text-align: right;
+    color: #5a3e2b;
+    white-space: nowrap;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 60px 40px;
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .footer-logo {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 18pt;
+    font-weight: normal;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .footer p {
+    font-family: 'EB Garamond', serif;
+    font-size: 11pt;
+    color: #999;
+    line-height: 1.8;
+  }
+
+  .footer a {
+    color: #5a3e2b;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(90, 62, 43, 0.3);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 48px;
+      letter-spacing: 8px;
+    }
+    .hero-content h2 {
+      font-size: 30px;
+      letter-spacing: 12px;
+    }
+    .hero-content h3 {
+      font-size: 15px;
+      letter-spacing: 2px;
+    }
+    .main-container {
+      padding: 50px 24px 40px;
+    }
+    .main-title {
+      font-size: 24pt;
+    }
+    .summary-table thead th:nth-child(2),
+    .summary-table tbody td:nth-child(2) {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PARALLAX HERO COVER ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>THE SOURCE</h1>
+    <h2>FRANCE</h2>
+    <div class="hero-divider"></div>
+    <h3>TEXAS 2026</h3>
+  </div>
+  <div class="scroll-hint"></div>
+</section>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-container">
+
+  <h1 class="main-title">Wine Portfolio Preview</h1>
+
+  <p class="intro-text">
+    Nine wines from nine growers across Beaujolais, the Loire Valley, the Rh&ocirc;ne,
+    Burgundy, Jura, and Champagne. Each is farmed organically or beyond, fermented
+    with native yeasts, and shaped by the specific geology beneath the vines.
+    No cosmetics, no shortcuts&mdash;just the mark of place and season.
+  </p>
+
+  <!-- ==================== 1. DOMAINE CHARDIGNY ==================== -->
+  <div class="producer-section" id="chardigny">
+    <h2 class="producer-title">Domaine Chardigny</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/Chardigny-2-scaled.jpg" alt="Domaine Chardigny estate"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2021/11/Victor-Chardigny.jpg" alt="Victor-Emmanuel Chardigny"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2021/Resized/Chardigny3.jpg" alt="Chardigny vineyards"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2021/Resized/Chardigny6.jpg" alt="Chardigny landscape"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2021/Resized/Chardigny1.jpg" alt="Chardigny winery"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      Pierre-Maxime and Victor-Emmanuel Chardigny took over their 18th-century family estate in 2015,
+      located on the geological and appellation border between Beaujolais and M&acirc;connais. They are now
+      joined by their brother Jean-Baptiste, who spent years as the chef de culture for Domaine Leflaive
+      in the C&ocirc;te d&rsquo;Or and M&acirc;connais. Together, they farm 20 hectares of organically certified vineyards
+      in Saint-Amour and Saint-V&eacute;ran&mdash;Chardonnay grown in Jurassic limestone and clay, Gamay in the
+      acidic, igneous rock of France&rsquo;s Massif Central. Chardigny&rsquo;s Beaujolais style is clean and direct,
+      a balance between classic C&ocirc;te d&rsquo;Or Pinot Noir and softer, semi-carbonic Gamay typical of modern
+      Beaujolais, along with fresh, gentle, mineral-driven Chardonnay.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/domaine-chardigny/" target="_blank" class="producer-link">Click here for more on Domaine Chardigny &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2022 Chardigny, Beaujolais, Rouge, Leynes 12/750ml</p>
+      <p class="wine-desc">3ha at geological convergence between Beaujolais &amp; M&acirc;connais. Jurassic limestones &amp; clay to acidic igneous, volcanic rocks of Massif Central. Vines planted 2013. S exposure. Grapes are cooled to 8&deg;C prior to a 100% whole-bunch, carbonic 10 to 12-day natural &ldquo;infusion&rdquo; fermentation, followed by 6 months aging in steel and old French oak with a light filtration and the first sulfites added at bottling.</p>
+      <p class="wine-pricing-line">FL $149.24 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== BEAUJOLAIS MAPS ==================== -->
+  <div class="producer-section" style="text-align: center; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://media.winefolly.com/FranceBeaujolais-wine-map-WineFolly.jpg" alt="Beaujolais Wine Map">
+      <span class="map-label">Beaujolais Map &mdash; click to expand</span>
+    </div>
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://www.beaujolais.com/wp-content/uploads/sites/2/2020/07/Carte-des-Sols-Saint-Amour.jpg" alt="Carte des Sols Saint-Amour">
+      <span class="map-label">Saint-Amour Soils &mdash; click to expand</span>
+    </div>
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://www.bourgogne-wines.com/gallery_appellation_carte/61/61_thumb.jpg" alt="Bourgogne Appellation Map">
+      <span class="map-label">Bourgogne Map &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== 2. JARDINS DE FLEURY ==================== -->
+  <div class="producer-section" id="fleury">
+    <h2 class="producer-title">Carole Kohler &mdash; Jardins de Fleury</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/1A2A2426-scaled.jpeg" alt="Jardins de Fleury estate"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/1A2A1622-scaled.jpeg" alt="Carole Kohler"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/1A2A2491-scaled.jpeg" alt="Fleury vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/1A2A2446-scaled.jpeg" alt="Fleury vines"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/1A2A3084-scaled.jpeg" alt="Fleury landscape"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      On the historic 15th-century Fleury estate, the humble and spirited Carole Kohler crafts organic, and biodynamic, no-sulfite-added Chenin Blanc on schists of the Massif Armorican and Cabernet Franc on Jurassic Tourcian limestone of the Paris Basin. A former chemist turned vigneronne, she and her husband, architect and hobby historian Brice Kohler, revived its historic connection to viticulture in Thouars, on the southern frontier of Anjou, where vineyards had nearly vanished after shifting appellation laws with the creation of the European Union. A self-contained world, Fleury is a haven of ancient forests where biodiversity thrives, untainted by neighboring agriculture. Carole&rsquo;s light-handed approach yields wines that channel the voice of the land, rewriting the history of this once-forgotten terroir. And with wines like these, it&rsquo;s only a matter of time before others follow.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/carole-kohler-jardins-de-fleury/" target="_blank" class="producer-link">Click here for more on Jardins de Fleury &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2023 Jardins de Fleury, Cabernet Franc, Jardin 12/750ml</p>
+      <p class="wine-desc">Jardin is 100% Cabernet Franc from a single 0.5-hectare parcel, planted in 2016 at an altitude of 80&ndash;90 m on a mild west-facing slope on hard, blue-gray marl and clayey Toarcian limestone bedrock, with a topsoil ranging from 20&ndash;80 cm in depth, composed of silt, clay, sand, flint, and limestone rock. 2023 Jardin was destemmed and naturally fermented in 50 hl steel tanks for 15 days of infusion fermentation at 25&deg;C max, prior to pressing. Aged for 8 months in old 225 L French oak and concrete eggs before bottling, with no added sulfites at any time and without fining or filtration.</p>
+      <p class="wine-pricing-line">FL $216.00 &middot; 1pl $205.00 &middot; 2pl $195.00</p>
+    </div>
+  </div>
+
+  <!-- ==================== 3. DOMAINE DES COLLINES ==================== -->
+  <div class="producer-section" id="collines">
+    <h2 class="producer-title">S&eacute;bastien Mazerat &mdash; Domaine des Collines</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/Domaine-la-Collines1.jpg" alt="Collines vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/Domaine-la-Collines2.jpg" alt="Collines vines"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/Domaine-la-Collines3.jpg" alt="Collines terroir"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/02/Domaine-la-Collines4.jpg" alt="S&eacute;bastien Mazerat"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      A native of Cornas and from a family of winemakers, S&eacute;bastien Mazerat brings tradition and international experience to Le Domaine des Collines. After nine years working with the owner, Christine, they officially partnered in 2022 in preparation for full ownership for her 2025 retirement. With a sharp focus on organic farming and ingenious mechanical engineering, S&eacute;bastien manages 5 hectares of Syrah, 1 hectare of Merlot, and 0.5 hectares of Chardonnay, alongside fruit and forage crops. His winemaking philosophy leans toward minimal intervention, favoring indigenous yeasts and using only miniscule amounts of sulfites post-malolactic fermentation.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/domaine-des-collines/" target="_blank" class="producer-link">Click here for more on Domaine des Collines &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2022 Collines, Collines Rhodaniennes, Syrah (New Label) 12/750ml</p>
+      <p class="wine-desc">Syrah is harvested from vines planted in 2000 on west-facing mild slope at 150 meters on deep calcareous clay. Syrah is destemmed and naturally fermented for 18 days with 1-2 daily pump overs, aged 8 months in concrete with the first sulfites added after malolactic between 0-5 mg/L total sulfites. Unfined and lightly filtered.</p>
+      <p class="wine-pricing-line">FL $159.00 &middot; 1pl $151.00 &middot; 2pl $143.00</p>
+    </div>
+  </div>
+
+  <!-- ==================== 4. STEPHANE ROUSSET ==================== -->
+  <div class="producer-section" id="rousset">
+    <h2 class="producer-title">St&eacute;phane Rousset</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/04/rousset-2.jpg" alt="Domaine Rousset vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/04/rousset-3.jpg" alt="Rousset terroir"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/06/rousset-1.jpg" alt="St&eacute;phane Rousset"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/07/rousset-7.jpg" alt="Rousset cellar"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/06/rousset-3.jpg" alt="Rousset Crozes-Hermitage"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      St&eacute;phane Rousset&rsquo;s vineyards are in Crozes-Hermitage&rsquo;s northern communes of &Eacute;r&ocirc;me, Gervans and Crozes-Hermitage, including the legendary Les Picaudi&egrave;res. The hill structures and soil types differ significantly throughout the appellation with various exposures on moderate to very steep rock terraces. Rousset&rsquo;s Marsanne grows mostly on loess topsoil and granite bedrock. The Crozes-Hermitage red wine terroirs are largely on granite with some variations of igneous and metamorphic rock. Across the river, in Tournon, two adjacent blocks of St. Joseph grow on extremely steep granite slopes. Whites are whole cluster pressed, fermented in concrete, mostly aged in steel without malolactic with remaining in oak. The reds are partial stem inclusion and are fermented in steel and then racked to barrel or tank where they age for about a year.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/domaine-rousset/" target="_blank" class="producer-link">Click here for more on St&eacute;phane Rousset &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2023 Rousset, Crozes-Hermitage Rouge, Les Picaudi&egrave;res 12/750ml</p>
+      <p class="wine-desc">Rousset&rsquo;s Crozes-Hermitage Rouge Les Picaudi&egrave;res is 100% Syrah from a parcel northeast above Gervans planted 55 years ago (2023) on extremely steep south-facing terraces at 245-345m on granite and schist bedrock with a shallow rocky topsoil. Zero stem inclusion (exception: warmer years), ferment 225-500L French oak barrels (min new oak &ndash; only when barrels need replacement).</p>
+      <p class="wine-pricing-line">FL $29.00 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== CROZES-HERMITAGE MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://cartovia.com/cdn/shop/files/carte-des-vins-de-crozes-hermitage-benoit-france-accessoire-benoit-france-821110.jpg?v=1710002678&width=1800" alt="Carte des Vins de Crozes-Hermitage">
+      <span class="map-label">Crozes-Hermitage &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== CHABLIS MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://i.etsystatic.com/34380975/r/il/e67340/4793881441/il_fullxfull.4793881441_aapw.jpg" alt="Chablis Appellation Map">
+      <span class="map-label">Chablis &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== 5. JEAN COLLET ==================== -->
+  <div class="producer-section" id="collet">
+    <h2 class="producer-title">Jean Collet</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/04/Collet10.jpg" alt="Jean Collet estate"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/03/Collet21.jpg" alt="Collet vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/03/domaine-collet-vaillons-home-1024x512-1.jpg" alt="Collet Vaillons"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/03/Collet20.jpg" alt="Collet cellar"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/03/Collet-Vineyard-shot.jpeg" alt="Collet Chablis vineyard"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      At twenty-one years old, Romain Collet took over the family domaine and converted many of their vineyards to organic viticulture (with some biodynamics experiments) and incorporated natural yeast fermentations. Collet&rsquo;s range highlights the differences of each of their premier crus and grand crus with a cellar vinification and aging tailored to the uniqueness of each site and lean toward a more richer C&ocirc;te d&rsquo;Or style than the trimmer quality of the Loire Valley whites. The soils are composed of Kimmeridgian limestone marl bedrock with rocky topsoil composed of Portlandian limestone scree, bedrock-derived marlstones, varying levels of marne (calcium carbonate-rich clay) and loam. The entry-level wines, Saint-Bris, Petit Chablis, Chablis, and 1er Cru Montmains are aged in steel while the others are aged in variations of French oak vessels (225l&ndash;80hl), with no new oak barrels used with any of the wines imported by The Source.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/jean-collet/" target="_blank" class="producer-link">Click here for more on Jean Collet &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2021 Collet, Chablis, 1er Cru, Vaillons 12/750ml</p>
+      <p class="wine-desc">Located on the Sa&ocirc;ne left bank, Vaillons comes from 15 organic certified plots planted between 1972 mostly inside the lieux-dits, Ch&acirc;tains &amp; M&eacute;linots, on medium steep, east/southeast-facing slopes at 160-240m. The bedrock is Kimmeridgian limestone marl with a shallow and rocky, brown clay topsoil. Natural fermentation in (95%) steel &amp; (5%) oak. Aged 14 months in equal parts old 228L French oak, 20-year-old 85hl foudre, and steel. First sulfites added to must, full malolactic, and light fining and filtration.</p>
+      <p class="wine-pricing-line">FL $279.81 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== 6. LES INFILTRES ==================== -->
+  <div class="producer-section" id="infiltres">
+    <h2 class="producer-title">Les Infiltr&eacute;s &mdash; Fr&eacute;d&eacute;ric Hauss</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/06/1A2A1362-scaled.jpeg" alt="Les Infiltr&eacute;s vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/Les-infiltres-9.jpg" alt="Les Infiltr&eacute;s"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/06/1A2A0407-scaled.jpeg" alt="Fr&eacute;d&eacute;ric Hauss"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/Les-infiltres-10.jpg" alt="Les Infiltr&eacute;s cellar"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/06/1A2A1680-3-scaled.jpeg" alt="Les Infiltr&eacute;s vines"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      Based in Saumur Puy-Notre-Dame, a new focal point for colder climate Chenin Blanc and Cabernet Franc, the enthusiastic and charming Fr&eacute;d&eacute;ric Hauss enters the wine world as a former cinematographer who worked extensively behind the camera for the big screen and TV. In his early forties, and in the middle of the Covid pandemic, he decided to redirect into this equally artistic life that provides a greater connection to nature. Some are quick to understand fundamentals (perhaps those who already mastered them in another craft are advantaged), and it&rsquo;s clear that Fr&eacute;d also understands artistic composition, and already how to craft a wine to capture emotion, discreetly.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/les-infiltres/" target="_blank" class="producer-link">Click here for more on Les Infiltr&eacute;s &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2022 Les Infiltr&eacute;s, Vin de France, Saumur Blanc, &ldquo;Une Histoire Vraie&rdquo; 12/750ml</p>
+      <p class="wine-desc">Les Infiltr&eacute;s Saumur Blanc &ldquo;Une Histoire Vraie&rdquo; comes from a 0.20 ha plot planted in 1990 at 50m facing east on a gentle hill of Turonian green chalk limestone bedrock with a deep silt and sand topsoil. 60-day natural fermentation in fiberglass at 20&deg;C max. Aged on lees for 6 months in old 228L French oak and 6 months in bottles. It passes through malolactic fermentation, and is neither filtered nor fined. 20mg/L total sulfites added only at bottling.</p>
+      <p class="wine-pricing-line">FL $33.00 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== SAUMUR MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://www.vinsdeloire.fr/sites/interloire/files/inline-images/carte-vignoble-saumur-f-bulles-page-001.jpg" alt="Carte du Vignoble de Saumur">
+      <span class="map-label">Saumur Vineyard Map &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== 7. VINCENT BERGERON ==================== -->
+  <div class="producer-section" id="bergeron">
+    <h2 class="producer-title">Vincent Bergeron</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/12/12-15/Vincent%20Bergeron7.jpg" alt="Bergeron cellar"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/12/12-15/Vincent%20Bergeron4.jpeg" alt="Bergeron vines"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/12/12-15/Vincent%20Bergeron5.jpeg" alt="Bergeron terroir"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/12/12-15/Vincent%20Bergeron3.jpeg" alt="Bergeron landscape"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      On the rolling hills and floodplains of the Loire River&rsquo;s Montlouis-sur-Loire, the humble and gentle Vincent crafts his finely tuned certified organic Chenin Blanc (still and sparkling) and Pinot Noir wines from 3.4ha of vineyards grown on limestone bedrock, perruches (fossils, lithified clay, flint/silex), sandstone, clay, and limestone rock topsoil. These &ldquo;natural&rdquo; wines are spontaneously fermented and aged in French oak barrels (some in fiberglass)&mdash;most without any addition of sulfites. With his concession to nature and commitment to honor the season, sans maquillage, sin compromise, he sets his wines on a direct course, showcasing each season&rsquo;s gifts and challenges, allowing his wines to freely express the mark of their birth year. Warm vintages (like 2020) taste of a season&rsquo;s richer fruits and softer palate while still being delicate and complex. Cold years (like 2021) are brighter, fresher, and more tense.
+    </p>
+
+    <p class="producer-bio" style="margin-top: -12px;">
+      &ldquo;Vincent is rare in today&rsquo;s world of self-aggrandizing young vigneron talents&mdash;sometimes appointed by the wine community and often by the self, as &lsquo;rock stars.&rsquo; Many seek celebrity and membership in idealist tribes rather than going for truth and an honest view into this m&eacute;tier, this artistic pursuit, this craft&ndash;a marriage between homo-sapiens and nature. Vincent is a vigneron&rsquo;s vigneron, a human&rsquo;s human, an uncontrived example of how to live and simply let be, spiritually, without trying to be someone.&rdquo; &mdash; Ted Vance
+    </p>
+
+    <a href="https://thesourceimports.com/producers/vincent-bergeron/" target="_blank" class="producer-link">Click here for more on Vincent Bergeron &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">2022 Bergeron, Vin de France, Chenin Blanc, Matin Midi et Soir 12/750ml</p>
+      <p class="wine-desc">Natural ferment and aging for 8-12 months in mostly old 225-400l French oak with the first sulfites added after ML. No filtration or fining.</p>
+      <p class="wine-pricing-line">FL $295.00 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== MONTLOUIS MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://lacave-eclairee.fr/cdn/shop/files/montlouis-terroir_1024x1024.webp" alt="Montlouis-sur-Loire Terroir Map">
+      <span class="map-label">Montlouis-sur-Loire Terroir &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== JURA MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://www.winescholarguild.com/images/2025/08/28/jura-map.webp" alt="Jura Appellation Map">
+      <span class="map-label">Jura &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== 8. CARTAUX-BOUGAUD ==================== -->
+  <div class="producer-section" id="cartaux">
+    <h2 class="producer-title">Cartaux-Bougaud</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/10/1A2A1783-scaled.jpeg.webp" alt="Cartaux-Bougaud estate"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/10/1A2A0578-scaled.jpeg" alt="Cartaux-Bougaud cellar"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/10/1A2A0576-scaled.jpeg" alt="Cartaux-Bougaud vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/10/Screen-Shot-2024-09-23-at-5.13.13-PM-scaled.jpeg" alt="Ch&acirc;teau de Quintigny"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2024/10/Cartaux-Bougaud.jpg" alt="Cartaux-Bougaud Jura"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      S&eacute;bastien and Sandrine&rsquo;s family domaine is relatively young. The family&rsquo;s first harvest in 1973 on a small 0.20-hectare plot in L&rsquo;&Eacute;toile, their parents, Anne-Marie Bougaud and Guy Cartaux, acquired the Ch&acirc;teau de Quintigny (whose name adorns most of the labels as well as their family name) in 1983, expanding their vineyards and fully committing to winegrowing. S&eacute;bastien Cartaux and his sister Nathalie (who left the domaine in 2010) took over in 1993, and today S&eacute;bastien and Sandrine continue to run their 20-hectare estate, which was organic-certified in 2022. They produce Chardonnay (which makes up the vast majority of the vine surface area of L&rsquo;&Eacute;toile&rsquo;s 67 hectares) and Savagnin from AOC L&rsquo;&Eacute;toile, as well as reds (Poulsard, Trousseau, and Pinot Noir) from the C&ocirc;tes du Jura. Their wines are crafted in numerous cellars, including the ancient Ch&acirc;teau de Quintigny, using both traditional &ldquo;ouillage&rdquo; method with air space left in the barrel and the region&rsquo;s unique oxidative aging process, essential for producing the renowned Vin Jaune.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/cartaux-bougaud/" target="_blank" class="producer-link">Click here for more on Cartaux-Bougaud &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">Cartaux Bougaud, Cr&eacute;mant du Jura Blanc, Brut 12/750ml</p>
+      <p class="wine-desc">Cr&eacute;mant du Jura Brut, Blanc comes from 15-year-old (2024) Chardonnay vines planted on a south face at 250 meters altitude on gentle slopes of limestone bedrock with a calcareous silty topsoil. Fermented in steel and enamelled concrete vats for 8-10 days followed by bottling in February. It undergoes complete malolactic fermentation and is neither fined nor filtered with the sulfites added only at the must. Disgorged after 9 months and finished with 0g/L of dosage.</p>
+      <p class="wine-pricing-line">FL $227.00 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== CHAMPAGNE MAP ==================== -->
+  <div class="producer-section" style="text-align: center;">
+    <div class="map-thumb" onclick="openLightbox(this.querySelector('img').src, this.querySelector('img').alt)">
+      <img src="https://www.winescholarguild.com/images/2025/08/28/champagne-map.webp" alt="Champagne Appellation Map">
+      <span class="map-label">Champagne &mdash; click to expand</span>
+    </div>
+  </div>
+
+  <!-- ==================== 9. PASCAL MAZET ==================== -->
+  <div class="producer-section" id="mazet">
+    <h2 class="producer-title">Pascal Mazet</h2>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/mazet-3.jpg" alt="Pascal Mazet estate"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/mazet-4.jpg" alt="Mazet vineyard"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/mazet-1.jpg" alt="Pascal Mazet"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2025/09/mazet-5.jpg" alt="Mazet Champagne"></div>
+        <div class="carousel-slide"><img src="https://thesourceimports.com/wp-content/uploads/2022/12/12-14/Mazet-scaled.jpeg" alt="Mazet cellar"></div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">&lsaquo;</button>
+      <button class="carousel-btn next" aria-label="Next">&rsaquo;</button>
+      <div class="carousel-dots"></div>
+    </div>
+
+    <p class="producer-bio">
+      The lovely and humble Catherine and constantly smiling Pascal Mazet established their domaine in 1981 with 2.5 hectares from her side of the family&mdash;enviable holdings in premier cru land on the Montagne de Reims communes Chigny-les-Roses and Ludes, and a grand cru parcel in Ambonnay. Even with such scant vineyard land, Pascal and his third son, Olivier, keep it interesting with six very different wines, soon to be only five. Most of the vineyards are gentle slopes facing southeast at 150m altitude with chalk bedrock alternating with calcareous sands and clay topsoil. They&rsquo;re easy to spot: green jungle patches amid neighboring vineyards growing on desolate soil.
+    </p>
+
+    <a href="https://thesourceimports.com/producers/pascal-mazet/" target="_blank" class="producer-link">Click here for more on Pascal Mazet &rarr;</a>
+
+    <div class="wine-entry">
+      <p class="wine-title">Pascal Mazet, Champagne, 1er Cru, Brut, Nature (2015 Base Wine) 12/750ml</p>
+      <p class="wine-desc">&ldquo;Nature&rdquo; is a blend of roughly 45% Pinot Meunier, 30% Chardonnay and 25% Pinot Noir harvested from gentle to mildly sloping limestone and clay vineyards at 120-180m with a south/southeast exposure. Natural fermentation and aging 20 months in old 228 L French oak (min 15 yrs old). 60% vintage and 40% solera. Aged 7 years in bottle with lees prior to disgorgement. No dosage.</p>
+      <p class="wine-pricing-line">FL $504.00 Net</p>
+    </div>
+  </div>
+
+  <!-- ==================== PRICING SUMMARY ==================== -->
+  <div class="summary-section">
+    <h2 class="summary-title">At a Glance</h2>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Wine</th>
+          <th>Producer</th>
+          <th>FL Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022 Beaujolais Rouge, Leynes</td>
+          <td>Chardigny</td>
+          <td>$149.24</td>
+        </tr>
+        <tr>
+          <td>2023 Cabernet Franc, Jardin</td>
+          <td>Jardins de Fleury</td>
+          <td>$216.00</td>
+        </tr>
+        <tr>
+          <td>2022 Collines Rhodaniennes, Syrah</td>
+          <td>Collines</td>
+          <td>$159.00</td>
+        </tr>
+        <tr>
+          <td>2023 Crozes-Hermitage, Les Picaudi&egrave;res</td>
+          <td>Rousset</td>
+          <td>$29.00</td>
+        </tr>
+        <tr>
+          <td>2021 Chablis 1er Cru, Vaillons</td>
+          <td>Jean Collet</td>
+          <td>$279.81</td>
+        </tr>
+        <tr>
+          <td>2022 Saumur Blanc, Une Histoire Vraie</td>
+          <td>Les Infiltr&eacute;s</td>
+          <td>$33.00</td>
+        </tr>
+        <tr>
+          <td>2022 Chenin Blanc, Matin Midi et Soir</td>
+          <td>Bergeron</td>
+          <td>$295.00</td>
+        </tr>
+        <tr>
+          <td>Cr&eacute;mant du Jura Blanc, Brut</td>
+          <td>Cartaux-Bougaud</td>
+          <td>$227.00</td>
+        </tr>
+        <tr>
+          <td>Champagne 1er Cru, Brut Nature</td>
+          <td>Pascal Mazet</td>
+          <td>$504.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p class="footer-logo">The Source</p>
+  <p>
+    <a href="https://thesourceimports.com">thesourceimports.com</a>
+  </p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// Lightbox for maps
+function openLightbox(src, alt) {
+  var overlay = document.getElementById('lightbox');
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxImg').alt = alt;
+  document.getElementById('lightboxCaption').textContent = alt;
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Parallax effect on hero background
+(function() {
+  const heroBg = document.querySelector('.hero-bg');
+  const hero = document.querySelector('.hero');
+  const heroContent = document.querySelector('.hero-content');
+
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+
+    if (scrollY <= heroHeight) {
+      heroBg.style.transform = 'translateY(' + (scrollY * 0.4) + 'px)';
+      const opacity = 1 - (scrollY / (heroHeight * 0.6));
+      heroContent.style.opacity = Math.max(0, opacity);
+      heroContent.style.transform = 'translateY(' + (scrollY * 0.2) + 'px)';
+    }
+  }, { passive: true });
+})();
+
+// Scroll-triggered fade-in for producer sections
+(function() {
+  const sections = document.querySelectorAll('.producer-section');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  sections.forEach(function(section) {
+    observer.observe(section);
+  });
+})();
+
+// Image carousels
+(function() {
+  document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dotsContainer = carousel.querySelector('.carousel-dots');
+    const prevBtn = carousel.querySelector('.carousel-btn.prev');
+    const nextBtn = carousel.querySelector('.carousel-btn.next');
+    let current = 0;
+
+    slides.forEach(function(_, i) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', function() { goTo(i); });
+      dotsContainer.appendChild(dot);
+    });
+
+    function goTo(index) {
+      current = index;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dotsContainer.querySelectorAll('.carousel-dot').forEach(function(dot, i) {
+        dot.classList.toggle('active', i === current);
+      });
+    }
+
+    prevBtn.addEventListener('click', function() {
+      goTo(current === 0 ? slides.length - 1 : current - 1);
+    });
+    nextBtn.addEventListener('click', function() {
+      goTo(current === slides.length - 1 ? 0 : current + 1);
+    });
+
+    let startX = 0;
+    let isDragging = false;
+
+    carousel.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextBtn.click();
+        else prevBtn.click();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
