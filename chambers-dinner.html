@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIEN DE ALTURA | 2026 US TOUR</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  @font-face {
+    font-family: 'The Source';
+    src: local('The Source 4 Regular'), local('TheSource4-Regular'),
+         local('The Source'), local('TheSource');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0a0a0a;
+    color: #e8e4df;
+    font-family: 'EB Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center 40%;
+    animation: slowDrift 30s ease-in-out infinite alternate;
+    filter: brightness(0.7);
+  }
+
+  @keyframes slowDrift {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.08) translateY(-2%); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.1) 0%,
+      rgba(10,10,10,0.0) 40%,
+      rgba(10,10,10,0.6) 85%,
+      rgba(10,10,10,1) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 30px;
+  }
+
+  .hero-text h1 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 8vw;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: revealUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+  }
+
+  .hero-text .divider {
+    width: 50px;
+    height: 1px;
+    background: rgba(255,255,255,0.4);
+    margin: 28px auto;
+    opacity: 0;
+    animation: revealUp 1.2s ease forwards 1s;
+  }
+
+  .hero-text .subtitle {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 4vw;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    opacity: 0;
+    animation: revealUp 1.2s ease forwards 1.2s;
+  }
+
+  .hero-text .year {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 14px;
+    opacity: 0;
+    animation: revealUp 1.2s ease forwards 1.4s;
+  }
+
+  /* ===== TITLE IMAGES ===== */
+  .title-img {
+    max-width: 90%;
+    height: auto;
+    opacity: 0;
+  }
+
+  .title-source {
+    height: 30px;
+    width: auto;
+    max-width: 80%;
+    margin-bottom: 20px;
+    animation: revealUp 1.2s ease forwards 0.2s;
+  }
+
+  .title-main {
+    height: 80px;
+    width: auto;
+    max-width: 90%;
+    animation: revealUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+  }
+
+  .title-carmelo {
+    height: 50px;
+    width: auto;
+    max-width: 90%;
+    animation: revealUp 1.2s ease forwards 1.2s;
+  }
+
+  .title-tour {
+    height: 50px;
+    width: auto;
+    max-width: 90%;
+    margin-top: 14px;
+    animation: revealUp 1.2s ease forwards 1.4s;
+  }
+
+  @media (max-width: 768px) {
+    .title-source { height: auto; max-width: 25%; }
+    .title-main { height: auto; max-width: 85%; }
+    .title-carmelo { height: auto; max-width: 75%; }
+    .title-tour { height: auto; max-width: 80%; margin-top: 10px; }
+  }
+
+  @media (max-width: 480px) {
+    .title-source { max-width: 22%; margin-bottom: 14px; }
+    .title-main { max-width: 90%; }
+    .title-carmelo { max-width: 80%; }
+    .title-tour { max-width: 85%; margin-top: 8px; }
+    .hero-text .divider { margin: 18px auto; }
+  }
+
+  @keyframes revealUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+    z-index: 2;
+    opacity: 0;
+    animation: revealUp 1s ease forwards 2s;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    width: 3px;
+    height: 12px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.2; transform: translateY(-20px); }
+  }
+
+  .hero + .full-image {
+    margin-top: -1px;
+  }
+
+  /* ===== FULL-BLEED IMAGE SECTIONS ===== */
+  .full-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+  }
+
+  .full-image img,
+  .full-image video {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+    border: none;
+  }
+
+  section {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .full-image + .full-image {
+    margin-top: -1px;
+  }
+
+  .content-flow {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .content-flow img,
+  .content-flow video {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: bottom;
+    animation: gentleZoom 25s ease-in-out infinite alternate;
+  }
+
+  @keyframes gentleZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.06); }
+  }
+
+  .full-image .image-caption {
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    z-index: 2;
+  }
+
+  /* ===== TEXT BREAK SECTIONS ===== */
+  .text-break {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 100px 40px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .text-break.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-break p {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 700px;
+    color: rgba(232, 228, 223, 0.75);
+    font-weight: 400;
+  }
+
+  .text-break .location {
+    font-size: 13px;
+    font-style: normal;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 223, 0.3);
+    margin-top: 30px;
+    display: block;
+  }
+
+  /* ===== DUAL IMAGE GRID ===== */
+  .dual-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px 0;
+  }
+
+  .dual-image img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .dual-image.visible img {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dual-image.visible img:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+
+  /* ===== CINEMATIC STRIP (3 images) ===== */
+  .triple-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    padding: 4px 0;
+  }
+
+  .triple-strip img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .triple-strip.visible img {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .triple-strip.visible img:nth-child(2) { transition-delay: 0.1s; }
+  .triple-strip.visible img:nth-child(3) { transition-delay: 0.2s; }
+
+  /* ===== PARALLAX IMAGE ===== */
+  .parallax-section {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+  }
+
+  .parallax-section img {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    object-fit: cover;
+    will-change: transform;
+  }
+
+  .parallax-section .overlay-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background: rgba(10,10,10,0.3);
+  }
+
+  .parallax-section .overlay-text h2 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 7vw;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+  }
+
+  /* ===== INFO SECTION ===== */
+  .info-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 120px 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .info-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .info-section h3 {
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 223, 0.3);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .info-section .detail-line {
+    font-size: 20px;
+    line-height: 2;
+    color: rgba(232, 228, 223, 0.7);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 80px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer p {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 223, 0.2);
+  }
+
+  /* ===== FLOATING BUTTON ===== */
+  .floating-btn {
+    position: fixed;
+    bottom: 34px;
+    right: 34px;
+    z-index: 100;
+    padding: 14px 30px;
+    background: rgba(10, 10, 10, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 16px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
+
+  .floating-btn:hover {
+    background: rgba(10, 10, 10, 0.85);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-text h1 { font-size: 10vw; }
+    .dual-image { grid-template-columns: 1fr; }
+    .dual-image img { height: 60vh; }
+    .triple-strip { grid-template-columns: 1fr; }
+    .triple-strip img { height: 50vh; }
+    .text-break p { font-size: 22px; }
+    .parallax-section .overlay-text h2 { font-size: 10vw; }
+    .floating-btn { bottom: 20px; right: 20px; padding: 12px 22px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="elemento.html" class="floating-btn">Elemento</a>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <img class="hero-img" src="bien-cover.jpg" alt="Bien de Altura vineyards">
+  <div class="hero-overlay"></div>
+  <div class="hero-text" style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 20px;">
+    <img src="title-thesource.png" alt="The Source" class="title-img title-source">
+    <img src="title-biendealtura.png" alt="Bien de Altura" class="title-img title-main">
+    <div class="divider"></div>
+    <img src="title-carmelo.png" alt="Carmelo Peña Santana" class="title-img title-carmelo">
+    <img src="title-tour.png" alt="2026 US Tour · California · New York" class="title-img title-tour">
+  </div>
+  <div class="scroll-line"></div>
+</section>
+<div class="content-flow"><img src="canaries-satellite.jpg" alt="Canary Islands satellite view"><img src="https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/07/Screen-Shot-2024-07-22-at-9.40.00-AM-2048x922.jpeg.webp" alt="Canary Islands wine map"><img src="https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/07/Screen-Shot-2024-07-22-at-9.44.03-AM-2-2048x1005.jpeg.webp" alt="Canary Islands detail map"><img src="biende-map.jpg" alt="Bien de Altura - Carmelo Peña Santana vineyard map"><img src="canaries-geology-1.jpg" alt="Canary Islands geology"><img src="canaries-geology-2.jpg" alt="Canary Islands geology"><img src="canaries-geology-3.jpg" alt="Canary Islands geology"><img src="ikewen-5.jpg" alt="Bien de Altura terraced vineyards aerial"><img src="ikewen-11.jpg" alt="Bien de Altura vineyard"><img src="ikewen-14.jpg" alt="Bien de Altura vineyard"><img src="https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/07/Tidao-Vineyard-2-1536x1024.jpeg.webp" alt="Tidao Vineyard"><img src="https://thesourceimports.com/wp-content/webp-express/webp-images/doc-root/wp-content/uploads/2024/07/Screen-Shot-2024-04-20-at-8.42.49-AM-1536x857.jpeg.webp" alt="Bien de Altura"></div>
+
+<!-- ===== VIDEO ===== -->
+<section class="full-image" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Hr_LkAHDkEw?autoplay=1&mute=1&loop=1&playlist=Hr_LkAHDkEw&controls=1&rel=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>Bien de Altura &nbsp;&middot;&nbsp; 2026</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// Scroll-triggered reveals
+(function() {
+  const elements = document.querySelectorAll('.full-image, .text-break, .dual-image, .triple-strip, .info-section');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+  elements.forEach(function(el) { observer.observe(el); });
+})();
+
+// Parallax on scroll
+(function() {
+  const parallaxSections = document.querySelectorAll('.parallax-section');
+  window.addEventListener('scroll', function() {
+    parallaxSections.forEach(function(section) {
+      const rect = section.getBoundingClientRect();
+      const windowH = window.innerHeight;
+      if (rect.top < windowH && rect.bottom > 0) {
+        const progress = (windowH - rect.top) / (windowH + rect.height);
+        const offset = (progress - 0.5) * 100;
+        section.querySelector('img').style.transform = 'translateY(' + offset + 'px)';
+      }
+    });
+  }, { passive: true });
+})();
+
+// Hero parallax fade
+(function() {
+  const heroImg = document.querySelector('.hero-img');
+  const heroText = document.querySelector('.hero-text');
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+    const vh = window.innerHeight;
+    if (scrollY < vh) {
+      const progress = scrollY / vh;
+      heroText.style.opacity = 1 - progress * 1.5;
+      heroText.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+      heroImg.style.transform = 'scale(' + (1 + progress * 0.1) + ') translateY(' + (scrollY * 0.15) + 'px)';
+    }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEMENTO</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  @font-face {
+    font-family: 'The Source';
+    src: local('The Source 4 Regular'), local('TheSource4-Regular'),
+         local('The Source'), local('TheSource');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #0a0a0a;
+    color: #e8e4df;
+    font-family: 'EB Garamond', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 30px;
+  }
+
+  .hero-text h1 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 10vw;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: revealUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+  }
+
+  .hero-text .divider {
+    width: 50px;
+    height: 1px;
+    background: rgba(255,255,255,0.4);
+    margin: 28px auto;
+    opacity: 0;
+    animation: revealUp 1.2s ease forwards 1s;
+  }
+
+  .hero-text .subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    opacity: 0;
+    animation: revealUp 1.2s ease forwards 1.2s;
+  }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+    z-index: 2;
+    opacity: 0;
+    animation: revealUp 1s ease forwards 2s;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -1px;
+    width: 3px;
+    height: 12px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes revealUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.2; transform: translateY(-20px); }
+  }
+
+  /* ===== REGION SECTIONS ===== */
+  .region {
+    padding: 0;
+    margin: 0;
+  }
+
+  .region-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    padding: 80px 40px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .region-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .region-header h2 {
+    font-family: 'The Source', 'EB Garamond', serif;
+    font-size: 6vw;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  /* ===== MAP IMAGES ===== */
+  .map-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0 0;
+    margin: 0;
+    line-height: 0;
+    font-size: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .map-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .map-section img {
+    width: 100%;
+    max-width: 1000px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* ===== FULL-BLEED IMAGES ===== */
+  .full-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
+  }
+
+  .full-image img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+    border: none;
+  }
+
+  .full-image + .full-image {
+    margin-top: -1px;
+  }
+
+  /* ===== IMAGE FLOW ===== */
+  .content-flow {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .content-flow img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: bottom;
+  }
+
+  /* ===== DUAL IMAGE GRID ===== */
+  .dual-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .dual-image.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dual-image img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== TRIPLE STRIP ===== */
+  .triple-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+    padding: 4px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  .triple-strip.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .triple-strip img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== REGION DIVIDER ===== */
+  .region-divider {
+    width: 50px;
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ===== BACK BUTTON ===== */
+  .back-btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+    padding: 10px 22px;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .back-btn:hover {
+    background: rgba(10, 10, 10, 0.85);
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 80px 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer p {
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 223, 0.2);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-text h1 { font-size: 14vw; }
+    .region-header h2 { font-size: 9vw; }
+    .dual-image { grid-template-columns: 1fr; }
+    .dual-image img { height: 60vh; }
+    .triple-strip { grid-template-columns: 1fr; }
+    .triple-strip img { height: 50vh; }
+    .back-btn { top: 16px; left: 16px; padding: 8px 16px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="chambers-dinner.html" class="back-btn">&larr; Back</a>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Elemento</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Wines by Region</p>
+  </div>
+  <div class="scroll-line"></div>
+</section>
+
+<!-- ========================================== -->
+<!-- NEUCH&Acirc;TEL -->
+<!-- ========================================== -->
+<div class="region">
+  <div class="region-header">
+    <h2>Neuch&acirc;tel</h2>
+  </div>
+
+  <div class="map-section">
+    <img src="elemento/map-neuchatel.jpg" alt="Map of Neuch&acirc;tel">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/neuchatel-1.jpeg" alt="Neuch&acirc;tel wine">
+    <img src="elemento/neuchatel-2.jpeg" alt="Neuch&acirc;tel wine">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/neuchatel-3.jpeg" alt="Neuch&acirc;tel wine">
+    <img src="elemento/neuchatel-4.jpeg" alt="Neuch&acirc;tel wine">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/neuchatel-5.jpeg" alt="Neuch&acirc;tel wine">
+    <img src="elemento/neuchatel-6.jpeg" alt="Neuch&acirc;tel wine">
+  </div>
+
+  <section class="full-image">
+    <img src="elemento/neuchatel-7.jpeg" alt="Neuch&acirc;tel wine">
+  </section>
+</div>
+
+<div class="region-divider"></div>
+
+<!-- ========================================== -->
+<!-- VINHO VERDE -->
+<!-- ========================================== -->
+<div class="region">
+  <div class="region-header">
+    <h2>Vinho Verde</h2>
+  </div>
+
+  <div class="map-section">
+    <img src="elemento/map-vinho-verde.jpg" alt="Map of Vinho Verde">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/vinho-verde-1.jpeg" alt="Vinho Verde wine">
+    <img src="elemento/vinho-verde-2.jpeg" alt="Vinho Verde wine">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/vinho-verde-3.jpeg" alt="Vinho Verde wine">
+    <img src="elemento/vinho-verde-4.jpeg" alt="Vinho Verde wine">
+  </div>
+</div>
+
+<div class="region-divider"></div>
+
+<!-- ========================================== -->
+<!-- DOURO -->
+<!-- ========================================== -->
+<div class="region">
+  <div class="region-header">
+    <h2>Douro</h2>
+  </div>
+
+  <div class="map-section">
+    <img src="elemento/map-douro.jpg" alt="Map of Douro Valley">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/douro-1.jpeg" alt="Douro wine">
+    <img src="elemento/douro-2.jpeg" alt="Douro wine">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/douro-3.jpeg" alt="Douro wine">
+    <img src="elemento/douro-4.jpeg" alt="Douro wine">
+  </div>
+</div>
+
+<div class="region-divider"></div>
+
+<!-- ========================================== -->
+<!-- CANARY ISLANDS — GRAN CANARIA -->
+<!-- ========================================== -->
+<div class="region">
+  <div class="region-header">
+    <h2>Gran Canaria</h2>
+  </div>
+
+  <div class="map-section">
+    <img src="elemento/map-canarias.jpg" alt="Map of the Canary Islands">
+  </div>
+
+  <div class="triple-strip">
+    <img src="elemento/gran-canaria-1.webp" alt="Gran Canaria wine">
+    <img src="elemento/gran-canaria-2.webp" alt="Gran Canaria wine">
+    <img src="elemento/gran-canaria-3.webp" alt="Gran Canaria wine">
+  </div>
+</div>
+
+<div class="region-divider"></div>
+
+<!-- ========================================== -->
+<!-- CANARY ISLANDS — LANZAROTE -->
+<!-- ========================================== -->
+<div class="region">
+  <div class="region-header">
+    <h2>Lanzarote</h2>
+  </div>
+
+  <div class="map-section">
+    <img src="elemento/map-canarias.jpg" alt="Map of the Canary Islands">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/lanzarote-1.jpeg" alt="Lanzarote wine">
+    <img src="elemento/lanzarote-2.jpeg" alt="Lanzarote wine">
+  </div>
+
+  <div class="dual-image">
+    <img src="elemento/lanzarote-3.jpeg" alt="Lanzarote wine">
+    <img src="elemento/neuchatel-8.jpeg" alt="Lanzarote wine">
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>Elemento &nbsp;&middot;&nbsp; The Source Imports</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+(function() {
+  var targets = document.querySelectorAll('.region-header, .map-section, .dual-image, .triple-strip, .full-image');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  targets.forEach(function(el) { observer.observe(el); });
+})();
+</script>
+
+</body>
+</html>
